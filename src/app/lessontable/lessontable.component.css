@@ -1,0 +1,8 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+.open{
+  padding-right: 20px;
+  width:100px;
+}

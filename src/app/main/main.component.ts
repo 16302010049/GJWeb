@@ -12,4 +12,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
   }
 
+  temp() {
+    location.href = 'detail';
+  }
 }

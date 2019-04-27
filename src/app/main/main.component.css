@@ -1,3 +1,15 @@
 .mat-list-icon {
   color: rgba(0, 0, 0, 0.54);
 }
+
+.example-card {
+  max-width: 400px;
+  float: left;
+  margin: 10px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: 400px;
+}
+
