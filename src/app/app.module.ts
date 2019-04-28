@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule,
-  MatCheckboxModule,
+  MatCheckboxModule, MatChipsModule,
   MatIconModule,
   MatListModule,
   MatSidenavModule,
@@ -23,6 +23,8 @@ import { LessontableComponent } from './lessontable/lessontable.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { LessontabComponent } from './lessontab/lessontab.component';
 import { LessoncontainComponent } from './lessoncontain/lessoncontain.component';
+import { QuestionComponent } from './question/question.component';
+import { StudenttableComponent } from './studenttable/studenttable.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { LessoncontainComponent } from './lessoncontain/lessoncontain.component'
     MainComponent,
     LessontableComponent,
     LessontabComponent,
-    LessoncontainComponent
+    LessoncontainComponent,
+    QuestionComponent,
+    StudenttableComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,7 @@ import { LessoncontainComponent } from './lessoncontain/lessoncontain.component'
     MatSidenavModule,
     MatTreeModule,
     MatCardModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

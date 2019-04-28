@@ -1,5 +1,5 @@
 
-<mat-vertical-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper [linear]="isLinear" #stepper class="ltable">
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>填写你的课程名</ng-template>
@@ -7,19 +7,41 @@
         <input matInput placeholder="课程名" formControlName="firstCtrl" required>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>下一个</button>
+        <button mat-raised-button matStepperNext>下一个</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
+  <mat-step [stepControl]="secondFormGroup" optional>
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>填写你的课程简介</ng-template>
+      <ng-template matStepLabel>填写你的副标题</ng-template>
       <mat-form-field>
-        <input matInput placeholder="简介" formControlName="secondCtrl" required>
+        <input matInput placeholder="副标题" formControlName="secondCtrl" required>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>返回</button>
-        <button mat-button matStepperNext>下一个</button>
+        <button mat-raised-button matStepperPrevious>返回</button>
+        <button mat-raised-button matStepperNext>下一个</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" optional>
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>上传背景图片</ng-template>
+        <input  type="file"  formControlName="thirdCtrl" required>
+      <div>
+        <button mat-raised-button matStepperPrevious>返回</button>
+        <button mat-raised-button matStepperNext>下一个</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="fourthFormGroup">
+    <form [formGroup]="fourthFormGroup">
+      <ng-template matStepLabel>填写你的课程简介</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="简介" formControlName="fourthCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>返回</button>
+        <button mat-raised-button matStepperNext>下一个</button>
       </div>
     </form>
   </mat-step>
@@ -27,9 +49,9 @@
     <ng-template matStepLabel>完成</ng-template>
     你现在已经完成
     <div>
-      <button mat-button matStepperPrevious>返回</button>
-      <button mat-button (click)="stepper.reset()">重置</button>
+      <button mat-raised-button matStepperPrevious>返回</button>
+      <button mat-raised-button (click)="stepper.reset()">重置</button>
     </div>
   </mat-step>
-</mat-vertical-stepper>
+</mat-horizontal-stepper>
 <button mat-raised-button color="primary" class="open">开设</button>

@@ -8,3 +8,20 @@
 .mat-drawer{
   width:400px;
 }
+
+.mat-tree-node{
+  cursor:pointer;
+}
+
+.lefticon{
+  margin-left: 20px;
+}
+
+mat-icon{
+  color: blue;
+}
+
+.addChapter{
+  margin-left: 20px;
+  margin-top: 20px;
+}

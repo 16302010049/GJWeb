@@ -13,28 +13,18 @@ interface FoodNode {
 
 const TREE_DATA: FoodNode[] = [
   {
-    name: '第一章 嘴臭大师的自我修为',
+    name: '第一章 拉布拉多',
+    children: [
+      {name: '第一节 nmsl'},
+      {name: '第二节 wsnd'},
+      {name: '第三节 hjyz'},
+    ]
+  }, {
+    name: '第二章 哈士奇',
     children: [
       {name: '第一节 nmsl'},
       {name: 'Banana'},
       {name: 'Fruit loops'},
-    ]
-  }, {
-    name: '第二章 如何嘴臭别人',
-    children: [
-      {
-        name: 'Green',
-        children: [
-          {name: 'Broccoli'},
-          {name: 'Brussel sprouts'},
-        ]
-      }, {
-        name: 'Orange',
-        children: [
-          {name: 'Pumpkins'},
-          {name: 'Carrots'},
-        ]
-      },
     ]
   },
 ];

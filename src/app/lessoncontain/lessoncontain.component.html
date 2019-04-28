@@ -1,12 +1,17 @@
 
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
+    <mat-toolbar><mat-toolbar-row><span>章节体系</span></mat-toolbar-row></mat-toolbar>
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
       <!-- This is the tree node template for leaf nodes -->
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
         <!-- use a disabled button to provide padding for tree leaf -->
         <button mat-icon-button disabled></button>
+        <mat-icon>book</mat-icon>
         {{node.name}}
+        <mat-icon class="lefticon">arrow_upward</mat-icon>
+        <mat-icon>arrow_downward</mat-icon>
+        <mat-icon>delete</mat-icon>
       </mat-tree-node>
       <!-- This is the tree node template for expandable nodes -->
       <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
@@ -17,8 +22,16 @@
           </mat-icon>
         </button>
         {{node.name}}
+        <mat-icon class="lefticon">arrow_upward</mat-icon>
+        <mat-icon>arrow_downward</mat-icon>
+        <mat-icon>delete</mat-icon>
+        <mat-icon>add_box</mat-icon>
       </mat-tree-node>
     </mat-tree>
+    <button mat-raised-button color="primary" class="addChapter">增加章程</button>
   </mat-drawer>
-  <mat-drawer-content>Main content</mat-drawer-content>
+  <mat-drawer-content>
+    <mat-toolbar><mat-toolbar-row><span>内容设计</span></mat-toolbar-row></mat-toolbar>
+    <app-question></app-question>
+  </mat-drawer-content>
 </mat-drawer-container>
