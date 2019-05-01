@@ -1,0 +1,11 @@
+.mat-tree-node{
+  cursor:pointer;
+}
+
+.lefticon{
+  margin-left: 20px;
+}
+
+mat-icon{
+  color: blue;
+}

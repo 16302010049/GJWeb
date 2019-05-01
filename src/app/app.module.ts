@@ -9,9 +9,10 @@ import {
   MatIconModule,
   MatListModule,
   MatSidenavModule,
-  MatStepperModule,
+  MatStepperModule, MatTableModule,
   MatTabsModule, MatTreeModule
 } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from '@angular/material';
 import { LoginComponent } from './login/login.component';
@@ -20,11 +21,19 @@ import {MatInputModule} from '@angular/material';
 import { AppRoutingModule } from '../app-routing.module';
 import { MainComponent } from './main/main.component';
 import { LessontableComponent } from './lessontable/lessontable.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LessontabComponent } from './lessontab/lessontab.component';
 import { LessoncontainComponent } from './lessoncontain/lessoncontain.component';
 import { QuestionComponent } from './question/question.component';
 import { StudenttableComponent } from './studenttable/studenttable.component';
+import { RegistertableComponent } from './registertable/registertable.component';
+import { HomeworkComponent } from './homework/homework.component';
+import { CharpterlistComponent } from './charpterlist/charpterlist.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeworkdesigmComponent } from './homeworkdesigm/homeworkdesigm.component';
+import {GlobalModule} from './global/global.module';
+import { LessoncardComponent } from './lessoncard/lessoncard.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +45,12 @@ import { StudenttableComponent } from './studenttable/studenttable.component';
     LessontabComponent,
     LessoncontainComponent,
     QuestionComponent,
-    StudenttableComponent
+    StudenttableComponent,
+    RegistertableComponent,
+    HomeworkComponent,
+    CharpterlistComponent,
+    HomeworkdesigmComponent,
+    LessoncardComponent
   ],
   imports: [
     BrowserModule,
@@ -56,8 +70,14 @@ import { StudenttableComponent } from './studenttable/studenttable.component';
     MatTreeModule,
     MatCardModule,
     MatChipsModule,
+    MatTableModule,
+    FormsModule,
+    MatDialogModule,
+    HttpClientModule,
+    GlobalModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

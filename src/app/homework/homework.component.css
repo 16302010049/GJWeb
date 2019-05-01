@@ -5,11 +5,11 @@
   border: 1px solid #555;
 }
 
-.mat-drawer{
-  width:400px;
+.mat-drawer {
+  width: 400px;
 }
 
-.addChapter{
-  margin-left: 20px;
-  margin-top: 20px;
+.mat-drawer-content{
+  margin-left: 400px;
 }
+

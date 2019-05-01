@@ -1,0 +1,28 @@
+.example-full-width {
+  width: 90%;
+}
+
+span{
+  margin-bottom: 10px;
+}
+
+.half-fill{
+  width: 40%;
+  margin-right: 50px;
+}
+.mat-icon{
+  cursor:pointer;
+  color: blue;
+}
+
+li{
+  margin-bottom: 10px;
+}
+
+button{
+  margin-left: 20px;
+}
+
+.right{
+  margin-right: 5px;
+}

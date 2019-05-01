@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {GlobalService} from '../service/global.service';
+
 
 @Component({
   selector: 'app-header',
@@ -8,8 +10,21 @@ import { Component, OnInit } from '@angular/core';
 
 export class HeaderComponent implements OnInit {
   public isLogin = false;
-  constructor() { }
+  username;
+
+  constructor(private global: GlobalService) {
+  }
 
   ngOnInit() {
+    if (localStorage.getItem('username')) {
+      this.username = localStorage.getItem('username');
+    } else {
+      this.username = '未定义';
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('username');
+    location.href = 'login';
   }
 }

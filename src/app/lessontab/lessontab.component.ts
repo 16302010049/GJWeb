@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-lessontab',
@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lessontab.component.css']
 })
 export class LessontabComponent implements OnInit {
+  @Input() lesssonname: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

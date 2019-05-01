@@ -1,0 +1,46 @@
+<mat-toolbar><mat-toolbar-row><span>用户注册</span></mat-toolbar-row></mat-toolbar>
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>输入你的昵称</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="昵称" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>输入你的密码</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="密码"  [type]="hide ? 'password' : 'text'" formControlName="secondCtrl" required >
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" optional>
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>选择你的头像</ng-template>
+        <input  type="file" accept="image/*"  formControlName="thirdCtrl" required  >
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>注册完成</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+<button mat-raised-button color="primary" id="zhuce" (click)="register()">注册</button>

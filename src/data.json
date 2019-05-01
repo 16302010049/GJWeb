@@ -1,0 +1,90 @@
+{
+  "courses": [
+    {
+      "title": "ICS",
+      "sub-title": "the introduction to computer system",
+      "teacher": "example",
+      "background": "sxc258.jpg",
+      "introduce": "This course is open for who like to zuichou",
+      "chapters": [
+        {
+          "chapter_name": "chapter1",
+          "section": [
+            {
+              "sectionname": "section1",
+              "QA": [
+                {
+                  "question": "What's you name?",
+                  "answer": "cxk"
+                }
+              ],
+              "singleChoice": [
+                {
+                  "question": "Who is cxk brother?",
+                  "answer": [
+                    {
+                      "choice": "sxc"
+                    }
+                  ],
+                  "right_choice":"c"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "student": [
+    {
+      "register_id": 1,
+      "weixinhao": "sxcguanfang",
+      "mailbox": "sxc@cxk.com",
+      "sex": "male",
+      "name": "sxc",
+      "studentNumber": "63248000",
+      "take_course": [
+        {
+          "course_nmae": "dddsx",
+          "has_studied_section": [
+            {
+              "section_name":"who is sxc"
+            }
+          ],
+          "progress":0.12
+        }
+      ],
+      "collect": [
+        {
+          "question": "why sxc is so bad?",
+          "answer": "Because he is the emperor of JP.",
+          "note": "It is need to record."
+        }
+      ]
+    }
+  ],
+  "answer_record":[
+    {
+      "student_id": 1,
+      "course_name": "chick is so beautiful",
+      "chapter": "cxk",
+      "section": "Who is cha",
+      "question": "Do you think of jinitaimei?",
+      "choice":"c"
+    }
+  ],
+  "teacher":[
+    {
+      "head": "/sxc/cxk/cgx.jpg",
+      "name": "daidaidashixiong",
+      "password":"6324sunxiaochuang",
+      "open_course":[
+        {
+          "course_name": "chouxiangshengjing"
+        }
+      ]
+    }
+  ]
+}
+
+

@@ -2,8 +2,8 @@
   <mat-toolbar-row>
     <span>教师后台</span>
     <div mat-card-avatar class="example-header-image"></div>
-     <span>管理员</span>
-     <mat-icon>logout</mat-icon>
+     <span>{{username}}</span>
+     <mat-icon (click)="logout()">logout</mat-icon>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-card ></mat-card>

@@ -1,0 +1,31 @@
+<mat-toolbar><mat-toolbar-row><span>章节体系</span></mat-toolbar-row></mat-toolbar>
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <!-- This is the tree node template for leaf nodes -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <!-- use a disabled button to provide padding for tree leaf -->
+    <button mat-icon-button disabled></button>
+    <mat-icon>book</mat-icon>
+    {{node.name}}
+    <div *ngIf="modified==true">
+    <mat-icon class="lefticon">arrow_upward</mat-icon>
+    <mat-icon>arrow_downward</mat-icon>
+    <mat-icon>delete</mat-icon>
+    </div>
+  </mat-tree-node>
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+    <button mat-icon-button matTreeNodeToggle
+            [attr.aria-label]="'toggle ' + node.name">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+    {{node.name}}
+    <div *ngIf="modified==true">
+    <mat-icon class="lefticon">arrow_upward</mat-icon>
+    <mat-icon>arrow_downward</mat-icon>
+    <mat-icon>delete</mat-icon>
+    <mat-icon>add_box</mat-icon>
+    </div>
+  </mat-tree-node>
+</mat-tree>

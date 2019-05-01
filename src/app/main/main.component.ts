@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Course} from '../dataType/course';
+import {LessonService} from '../service/lesson.service';
 
 @Component({
   selector: 'app-main',
@@ -6,13 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  lessons: Course[];
 
-  constructor() { }
+  constructor(private service: LessonService) {
+  }
 
   ngOnInit() {
+    this.service.queryLesson(localStorage.getItem('username')).subscribe(users => this.lessons = users);
   }
 
-  temp() {
-    location.href = 'detail';
+  fresh() {
+    this.service.queryLesson(localStorage.getItem('username')).subscribe(users => this.lessons = users);
   }
+
 }

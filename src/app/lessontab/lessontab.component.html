@@ -1,8 +1,8 @@
 <mat-toolbar>
-  <span>狗的品种</span>
+  <span>{{lesssonname}}</span>
 </mat-toolbar>
 <mat-tab-group>
   <mat-tab label="章节安排"> <app-lessoncontain></app-lessoncontain> </mat-tab>
-  <mat-tab label="学生统计"> 学生统计 </mat-tab>
-  <mat-tab label="作业管理"> Content 3 </mat-tab>
+  <mat-tab label="作业管理"> <app-homework></app-homework> </mat-tab>
+  <mat-tab label="学生统计"><app-studenttable></app-studenttable> </mat-tab>
 </mat-tab-group>
