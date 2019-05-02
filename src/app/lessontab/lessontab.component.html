@@ -1,8 +1,8 @@
 <mat-toolbar>
-  <span>{{lesssonname}}</span>
+  <span>{{lesson.title}}</span>
 </mat-toolbar>
 <mat-tab-group>
-  <mat-tab label="章节安排"> <app-lessoncontain></app-lessoncontain> </mat-tab>
+  <mat-tab label="章节安排"> <app-lessoncontain [lesson]="lesson"></app-lessoncontain> </mat-tab>
   <mat-tab label="作业管理"> <app-homework></app-homework> </mat-tab>
   <mat-tab label="学生统计"><app-studenttable></app-studenttable> </mat-tab>
 </mat-tab-group>

@@ -1,40 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
-import {FlatTreeControl} from '@angular/cdk/tree';
+import {Chatpter, Course, section} from '../dataType/course';
+import {MatDialog} from '@angular/material';
+import {SectiondialogComponent} from '../sectiondialog/sectiondialog.component';
+import {ChapterdialogComponent} from '../chapterdialog/chapterdialog.component';
+import {LessonService} from '../service/lesson.service';
 
-/**
- * Food data with nested structure.
- * Each node has a name and an optiona list of children.
- */
-interface FoodNode {
-  name: string;
-  children?: FoodNode[];
-}
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: '第一章 拉布拉多',
-    children: [
-      {name: '第一节 nmsl'},
-      {name: '第二节 wsnd'},
-      {name: '第三节 hjyz'},
-    ]
-  }, {
-    name: '第二章 哈士奇',
-    children: [
-      {name: '第一节 nmsl'},
-      {name: 'Banana'},
-      {name: 'Fruit loops'},
-    ]
-  },
-];
-
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
+let se = {} as section;
+let temp = {} as Chatpter;
 
 @Component({
   selector: 'app-charpterlist',
@@ -42,28 +14,111 @@ interface ExampleFlatNode {
   styleUrls: ['./charpterlist.component.css']
 })
 export class CharpterlistComponent implements OnInit {
-  private transformer = (node: FoodNode, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
-  }
-
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level, node => node.expandable);
-
-  treeFlattener = new MatTreeFlattener(
-    this.transformer, node => node.level, node => node.expandable, node => node.children);
-
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
   @Input() modified;
-  constructor() {
-    this.dataSource.data = TREE_DATA;
+  name: string;
+  animal: string;
+  lesson: Course;
+  ChaIndex: number;
+  SecIndex: number;
+
+  constructor(private dialog: MatDialog, private service: LessonService) {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
   }
 
   ngOnInit() {
   }
 
+  openDialog(i: number): void {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    const dialogRef = this.dialog.open(SectiondialogComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(i);
+      this.animal = result;
+      console.log(this.animal);
+      se.sectionname = this.animal;
+      se.QA = [];
+      se.singleChoice = [];
+      this.lesson.chapters[i].section.push(se);
+      localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    });
+  }
+
+  openDialog2(): void {
+    const dialogRef = this.dialog.open(ChapterdialogComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.lesson = JSON.parse(localStorage.getItem('lesson'));
+      console.log('The dialog was closed');
+      this.animal = result;
+      console.log(this.animal);
+      temp.chapter_name = this.animal;
+      temp.section = [];
+      this.lesson.chapters.push(temp);
+      localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    });
+  }
+
+  upChapter(i: number) {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    if (i > 0) {
+      temp = this.lesson.chapters[i - 1];
+      this.lesson.chapters[i - 1] = this.lesson.chapters[i];
+      this.lesson.chapters[i] = temp;
+    }
+    localStorage.setItem('lesson', JSON.stringify(this.lesson));
+  }
+
+  downChapter(i: number) {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    if (i < this.lesson.chapters.length - 1) {
+      temp = this.lesson.chapters[i + 1];
+      this.lesson.chapters[i + 1] = this.lesson.chapters[i];
+      this.lesson.chapters[i] = temp;
+    }
+    localStorage.setItem('lesson', JSON.stringify(this.lesson));
+  }
+
+  delChapter(i: number) {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    this.lesson.chapters.splice(i, 1);
+    localStorage.setItem('lesson', JSON.stringify(this.lesson));
+  }
+
+  upSetion(i: number, j: number) {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    if (i > 0) {
+      se = this.lesson.chapters[j].section[i - 1];
+      this.lesson.chapters[j].section[i - 1] = this.lesson.chapters[j].section[i];
+      this.lesson.chapters[j].section[i] = se;
+    }
+    localStorage.setItem('lesson', JSON.stringify(this.lesson));
+  }
+
+  downSetion(i: number, j: number) {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    if (i < this.lesson.chapters[j].section.length - 1) {
+      se = this.lesson.chapters[j].section[i + 1];
+      this.lesson.chapters[j].section[i + 1] = this.lesson.chapters[j].section[i];
+      this.lesson.chapters[j].section[i] = se;
+    }
+    localStorage.setItem('lesson', JSON.stringify(this.lesson));
+  }
+
+  save() {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    this.service.updateLesson(this.lesson);
+  }
+
+  changeIndex(i: number, j: number) {
+    this.SecIndex = i;
+    this.ChaIndex = j;
+  }
 }
+

@@ -15,7 +15,7 @@ export interface Chatpter {
 
 // tslint:disable-next-line:class-name
 export interface section {
-  setionname: string;
+  sectionname: string;
   QA: QA[];
   singleChoice: singleChoice[];
 }

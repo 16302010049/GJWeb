@@ -1,31 +1,25 @@
-<mat-toolbar><mat-toolbar-row><span>章节体系</span></mat-toolbar-row></mat-toolbar>
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-  <!-- This is the tree node template for leaf nodes -->
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-    <!-- use a disabled button to provide padding for tree leaf -->
-    <button mat-icon-button disabled></button>
+<mat-toolbar>
+  <mat-toolbar-row><span>章节体系</span></mat-toolbar-row>
+</mat-toolbar>
+<ul>
+  <li *ngFor="let charpter of lesson.chapters;let j = index">
     <mat-icon>book</mat-icon>
-    {{node.name}}
-    <div *ngIf="modified==true">
-    <mat-icon class="lefticon">arrow_upward</mat-icon>
-    <mat-icon>arrow_downward</mat-icon>
-    <mat-icon>delete</mat-icon>
-    </div>
-  </mat-tree-node>
-  <!-- This is the tree node template for expandable nodes -->
-  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-    <button mat-icon-button matTreeNodeToggle
-            [attr.aria-label]="'toggle ' + node.name">
-      <mat-icon class="mat-icon-rtl-mirror">
-        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-      </mat-icon>
-    </button>
-    {{node.name}}
-    <div *ngIf="modified==true">
-    <mat-icon class="lefticon">arrow_upward</mat-icon>
-    <mat-icon>arrow_downward</mat-icon>
-    <mat-icon>delete</mat-icon>
-    <mat-icon>add_box</mat-icon>
-    </div>
-  </mat-tree-node>
-</mat-tree>
+         <span> Chapter{{j+1}} {{charpter.chapter_name}}</span>
+        <mat-icon class="lefticon" (click)="upChapter(j)">arrow_upward</mat-icon>
+        <mat-icon (click)="downChapter(j)">arrow_downward</mat-icon>
+        <mat-icon (click)="delChapter(j)">delete</mat-icon>
+        <mat-icon (click)="openDialog(j)">add_box</mat-icon>
+    <ul *ngIf="charpter.section.length>0">
+      <li *ngFor="let sec of charpter.section;let i = index">
+        <button mat-icon-button disabled class="space"></button>
+        <mat-icon>turned_in</mat-icon>
+        <span class="sec" [ngStyle]="{'color':ChaIndex ===j && SecIndex === i ?'red':'black'}" (click)="changeIndex(i,j)">Section{{i+1}} {{sec.sectionname}}</span>
+        <mat-icon class="lefticon" (click)="upSetion(i,j)">arrow_upward</mat-icon>
+        <mat-icon (click)="downSetion(i,j)">arrow_downward</mat-icon>
+        <mat-icon>delete</mat-icon>
+      </li>
+    </ul>
+  </li>
+</ul>
+<button mat-raised-button color="primary" class="addChapter" (click)="openDialog2()" class="fun">增加章程</button>
+<button mat-raised-button color="primary" class="addChapter" class="fun" (click)="save()">保存修改</button>

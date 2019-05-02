@@ -43,6 +43,7 @@ export class LessontableComponent implements OnInit {
     lesson.background = this.thirdFormGroup.get('thirdCtrl').value;
     lesson.introduce = this.fourthFormGroup.get('fourthCtrl').value;
     lesson.teacher = localStorage.getItem('username');
+    lesson.chapters = [];
     this.service.addLesson(lesson);
     location.reload();
   }

@@ -16,7 +16,8 @@ export class LessoncardComponent implements OnInit {
   ngOnInit() {
   }
 
-  temp() {
+  jump(lesson: Course) {
+    localStorage.setItem('lesson', JSON.stringify(lesson));
     location.href = 'detail';
   }
 

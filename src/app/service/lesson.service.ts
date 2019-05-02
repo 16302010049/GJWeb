@@ -23,8 +23,12 @@ export class LessonService {
     location.reload();
   }
 
-  deleLesson(lessonid:string) {
-    this.http.delete('http://localhost:5300/courses/'+lessonid).subscribe();
+  deleLesson(lessonid: string) {
+    this.http.delete('http://localhost:5300/courses/' + lessonid).subscribe();
     location.reload();
+  }
+
+  updateLesson(lesson: Course) {
+    this.http.put('http://localhost:5300/courses/' + lesson.id, lesson, httpOptions).subscribe();
   }
 }
