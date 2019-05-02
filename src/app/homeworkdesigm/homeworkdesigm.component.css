@@ -13,6 +13,7 @@ span{
 .mat-icon{
   cursor:pointer;
   color: blue;
+  vertical-align: middle;
 }
 
 li{
@@ -25,4 +26,8 @@ button{
 
 .right{
   margin-right: 5px;
+}
+
+span{
+  cursor: pointer;
 }

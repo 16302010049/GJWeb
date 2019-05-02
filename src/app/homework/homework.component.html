@@ -1,9 +1,9 @@
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
-    <app-charpterlist [modified]="false"></app-charpterlist>
+    <app-charpterlist [modified]="false" (childEvent)="getChildEvent($event)"></app-charpterlist>
   </mat-drawer>
   <mat-drawer-content clsss="contain">
     <mat-toolbar><mat-toolbar-row><span>作业安排</span></mat-toolbar-row></mat-toolbar>
-    <app-homeworkdesigm></app-homeworkdesigm>
+    <app-homeworkdesigm [lesson]="lesson" [ChaIndex]="ChaIndex" [SecIndex]="SecIndex"></app-homeworkdesigm>
   </mat-drawer-content>
 </mat-drawer-container>

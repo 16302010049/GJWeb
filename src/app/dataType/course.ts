@@ -27,10 +27,9 @@ export interface QA {
 
 export interface singleChoice {
   question: string;
-  answer: choice[];
+  choiceA: string;
+  choiceB: string;
+  choiceC: string;
+  choiceD: string;
   right_choice: string;
-}
-
-export interface choice {
-  choice: string;
 }

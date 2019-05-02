@@ -1,14 +1,14 @@
 <div *ngIf="SecIndex>=0&&ChaIndex>=0">
- <h3>Chapter{{ChaIndex+1}} {{lesson.chapters[ChaIndex].chapter_name}}- - - -Section{{SecIndex+1}}{{lesson.chapters[ChaIndex].section[SecIndex].sectionname}}</h3>
+ <h3>Chapter{{ChaIndex+1}} {{lesson.chapters[ChaIndex].chapter_name}}- - - -Section{{SecIndex+1}} {{lesson.chapters[ChaIndex].section[SecIndex].sectionname}}</h3>
 <ol>
   <li *ngFor="let qa of lesson.chapters[ChaIndex].section[SecIndex].QA;let i = index">
     <div>
     <mat-form-field class="example-full-width" mat-line>
-      <input matInput placeholder="问题"   [(ngModel)] = "qa.question" (blur)="saveQA()">
+      <input matInput placeholder="问题"   [(ngModel)] = "qa.question" (blur)="tempSave()">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" mat-line>
-      <input matInput placeholder="答案"  [(ngModel)]="qa.answer" (blur)="saveQA()">
+      <input matInput placeholder="答案"  [(ngModel)]="qa.answer" (blur)="tempSave()">
     </mat-form-field>
     </div>
     <mat-icon class="lefticon" (click)="upQA(i)">arrow_upward</mat-icon>

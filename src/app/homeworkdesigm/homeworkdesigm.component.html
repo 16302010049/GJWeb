@@ -1,59 +1,40 @@
+<div *ngIf="SecIndex>=0&&ChaIndex>=0">
+  <h3>Chapter{{ChaIndex+1}} {{lesson.chapters[ChaIndex].chapter_name}}- - - -Section{{SecIndex+1}} {{lesson.chapters[ChaIndex].section[SecIndex].sectionname}}</h3>
 <ol>
-  <li>
+  <li *ngFor="let singleChoice of lesson.chapters[ChaIndex].section[SecIndex].singleChoice;let i = index">
     <mat-form-field class="example-full-width" mat-line>
-      <input matInput placeholder="问题" value="What is your name?" disabled="disabled">
+      <input matInput placeholder="问题" [(ngModel)]="singleChoice.question" (blur)="tmepSave()" >
     </mat-form-field>
     <mat-form-field  mat-line class="half-fill">
-        <span>选项A:</span>
-        <input matInput placeholder="选项描述" value="Jobs"  disabled="disabled" class="choice">
+        <span (click)="makeRight('A',i)">选项A:</span>
+        <mat-icon *ngIf="singleChoice.right_choice === 'A'">check_circle</mat-icon>
+        <input matInput placeholder="选项描述" [(ngModel)]="singleChoice.choiceA" class="choice" (blur)="tmepSave()">
     </mat-form-field>
     <mat-form-field class="half-fill" mat-line>
-      <span>选项B:</span>
-      <input matInput placeholder="选项描述" value="James"  disabled="disabled" class="choice">
+      <span (click)="makeRight('B',i)">选项B:</span>
+      <mat-icon *ngIf="singleChoice.right_choice === 'B'">check_circle</mat-icon>
+      <input matInput placeholder="选项描述" [(ngModel)]="singleChoice.choiceB" class="choice" (blur)="tmepSave()">
     </mat-form-field>
     <mat-form-field class="half-fill" mat-line>
-      <span>选项C:</span>
-      <input matInput placeholder="选项描述" value="Yummi"  disabled="disabled" class="choice">
+      <span (click)="makeRight('C',i)">选项C:</span>
+      <mat-icon *ngIf="singleChoice.right_choice === 'C'">check_circle</mat-icon>
+      <input matInput placeholder="选项描述" [(ngModel)]="singleChoice.choiceC" class="choice" (blur)="tmepSave()">
     </mat-form-field>
     <mat-form-field class="half-fill" mat-line>
-      <span class="right">选项D:</span>
-      <mat-icon >check_circle</mat-icon>
-      <input matInput placeholder="选项描述" value="Clove"  disabled="disabled" class="choice">
+      <span class="right" (click)="makeRight('D',i)">选项D:</span>
+      <mat-icon *ngIf="singleChoice.right_choice === 'D'">check_circle</mat-icon>
+      <input matInput placeholder="选项描述" [(ngModel)]="singleChoice.choiceD" class="choice" (blur)="tmepSave()">
     </mat-form-field>
     <br>
-    <mat-icon>build</mat-icon>
-    <mat-icon class="lefticon">arrow_upward</mat-icon>
-    <mat-icon>arrow_downward</mat-icon>
-    <mat-icon>delete</mat-icon>
-  </li>
-  <li>
-    <mat-form-field class="example-full-width" mat-line>
-      <input matInput placeholder="问题" value="What is your name?" disabled="disabled">
-    </mat-form-field>
-    <mat-form-field  mat-line class="half-fill">
-      <span class="right">选项A:</span>
-      <mat-icon >check_circle</mat-icon>
-      <input matInput placeholder="选项描述" value="Jobs"  disabled="disabled" class="choice">
-    </mat-form-field>
-    <mat-form-field class="half-fill" mat-line>
-      <span>选项B:</span>
-      <input matInput placeholder="选项描述" value="James"  disabled="disabled" class="choice">
-    </mat-form-field>
-    <mat-form-field class="half-fill" mat-line>
-      <span>选项C:</span>
-      <input matInput placeholder="选项描述" value="Yummi"  disabled="disabled" class="choice">
-    </mat-form-field>
-    <mat-form-field class="half-fill" mat-line>
-      <span>选项D:</span>
-      <input matInput placeholder="选项描述" value="Clove"  disabled="disabled" class="choice">
-    </mat-form-field>
-    <br>
-    <mat-icon>build</mat-icon>
-    <mat-icon class="lefticon">arrow_upward</mat-icon>
-    <mat-icon>arrow_downward</mat-icon>
-    <mat-icon>delete</mat-icon>
+    <mat-icon class="lefticon" (click)="upSC(i)">arrow_upward</mat-icon>
+    <mat-icon (click)="downSC(i)">arrow_downward</mat-icon>
+    <mat-icon (click)="delSC(i)">delete</mat-icon>
   </li>
 </ol>
-<button mat-raised-button color="primary">增加题目</button>
-<button mat-raised-button color="primary">保存修改</button>
+</div>
+<h3 *ngIf="ChaIndex<0">未选择章节</h3>
+<div *ngIf="SecIndex>=0&&ChaIndex>=0">
+<button mat-raised-button color="primary" (click)="addSC()">增加题目</button>
+<button mat-raised-button color="primary" (click)="save()">保存修改</button>
 <button mat-raised-button color="primary">完成情况</button>
+</div>

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Course, QA} from '../dataType/course';
+import {LessonService} from '../service/lesson.service';
 
 let qa = {} as QA;
 
@@ -13,7 +14,7 @@ export class QuestionComponent implements OnInit {
   @Input() SecIndex: number;
   @Input() ChaIndex: number;
 
-  constructor() {
+  constructor(private service: LessonService) {
   }
 
   ngOnInit() {
@@ -28,8 +29,13 @@ export class QuestionComponent implements OnInit {
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
   }
 
+  tempSave() {
+    localStorage.setItem('lesson', JSON.stringify(this.lesson));
+  }
+
   saveQA() {
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    this.service.updateLesson(this.lesson);
   }
 
   upQA(i: number) {
@@ -53,7 +59,7 @@ export class QuestionComponent implements OnInit {
   }
 
   delQA(i: number) {
-      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA.splice(i,1)
-      localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA.splice(i, 1);
+    localStorage.setItem('lesson', JSON.stringify(this.lesson));
   }
 }
