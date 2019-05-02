@@ -1,34 +1,22 @@
+<div *ngIf="SecIndex>=0&&ChaIndex>=0">
+ <h3>Chapter{{ChaIndex+1}} {{lesson.chapters[ChaIndex].chapter_name}}- - - -Section{{SecIndex+1}}{{lesson.chapters[ChaIndex].section[SecIndex].sectionname}}</h3>
 <ol>
-  <li>
+  <li *ngFor="let qa of lesson.chapters[ChaIndex].section[SecIndex].QA;let i = index">
     <div>
     <mat-form-field class="example-full-width" mat-line>
-      <input matInput placeholder="问题" value="Sushi"v disabled="disabled">
+      <input matInput placeholder="问题"   [(ngModel)] = "qa.question" (blur)="saveQA()">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" mat-line>
-      <input matInput placeholder="答案" value="我不知道" disabled = "disabled">
+      <input matInput placeholder="答案"  [(ngModel)]="qa.answer" (blur)="saveQA()">
     </mat-form-field>
     </div>
-    <mat-icon>build</mat-icon>
-    <mat-icon class="lefticon">arrow_upward</mat-icon>
-    <mat-icon>arrow_downward</mat-icon>
-    <mat-icon>delete</mat-icon>
-  </li>
-  <li>
-    <div>
-      <mat-form-field class="example-full-width" mat-line>
-        <input matInput placeholder="问题" value="Sushi"v disabled="disabled">
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width" mat-line>
-        <input matInput placeholder="答案" value="我不知道" disabled = "disabled">
-      </mat-form-field>
-    </div>
-    <mat-icon>build</mat-icon>
-    <mat-icon class="lefticon">arrow_upward</mat-icon>
-    <mat-icon>arrow_downward</mat-icon>
-    <mat-icon>delete</mat-icon>
+    <mat-icon class="lefticon" (click)="upQA(i)">arrow_upward</mat-icon>
+    <mat-icon (click)="downQA(i)">arrow_downward</mat-icon>
+    <mat-icon (click)="delQA(i)">delete</mat-icon>
   </li>
 </ol>
-<button mat-raised-button color="primary" class="first">增加问题</button>
-<button mat-raised-button color="primary">保存修改</button>
+<button mat-raised-button color="primary" class="first" (click)="addQuestion()">增加问题</button>
+<button mat-raised-button color="primary" (click)="saveQA()">保存修改</button>
+</div>
+<h3 *ngIf="SecIndex<0">尚未选择章节</h3>

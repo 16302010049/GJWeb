@@ -1,12 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Chatpter, Course, section} from '../dataType/course';
 import {MatDialog} from '@angular/material';
 import {SectiondialogComponent} from '../sectiondialog/sectiondialog.component';
 import {ChapterdialogComponent} from '../chapterdialog/chapterdialog.component';
 import {LessonService} from '../service/lesson.service';
+import {Index} from '../dataType';
 
 let se = {} as section;
 let temp = {} as Chatpter;
+let inx = {} as Index;
 
 @Component({
   selector: 'app-charpterlist',
@@ -21,11 +23,15 @@ export class CharpterlistComponent implements OnInit {
   ChaIndex: number;
   SecIndex: number;
 
+  @Output() childEvent = new EventEmitter<Index>();
+
   constructor(private dialog: MatDialog, private service: LessonService) {
     this.lesson = JSON.parse(localStorage.getItem('lesson'));
   }
 
   ngOnInit() {
+    this.ChaIndex = -1;
+    this.SecIndex = -1;
   }
 
   openDialog(i: number): void {
@@ -73,6 +79,10 @@ export class CharpterlistComponent implements OnInit {
       this.lesson.chapters[i] = temp;
     }
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    if (this.ChaIndex === i) {
+      this.ChaIndex = i - 1;
+      this.changeIndex(this.SecIndex, this.ChaIndex);
+    }
   }
 
   downChapter(i: number) {
@@ -83,12 +93,21 @@ export class CharpterlistComponent implements OnInit {
       this.lesson.chapters[i] = temp;
     }
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    if (this.ChaIndex === i) {
+      this.ChaIndex = i + 1;
+      this.changeIndex(this.SecIndex, this.ChaIndex);
+    }
   }
 
   delChapter(i: number) {
     this.lesson = JSON.parse(localStorage.getItem('lesson'));
     this.lesson.chapters.splice(i, 1);
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    if (this.ChaIndex === i) {
+      this.ChaIndex = -1;
+      this.SecIndex = -1;
+      this.changeIndex(this.SecIndex, this.ChaIndex);
+    }
   }
 
   upSetion(i: number, j: number) {
@@ -99,6 +118,10 @@ export class CharpterlistComponent implements OnInit {
       this.lesson.chapters[j].section[i] = se;
     }
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    if (this.ChaIndex === j && this.SecIndex === i) {
+      this.SecIndex = i - 1;
+      this.changeIndex(this.SecIndex, this.ChaIndex);
+    }
   }
 
   downSetion(i: number, j: number) {
@@ -109,6 +132,21 @@ export class CharpterlistComponent implements OnInit {
       this.lesson.chapters[j].section[i] = se;
     }
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    if (this.ChaIndex === j && this.SecIndex === i) {
+      this.SecIndex = i + 1;
+      this.changeIndex(this.SecIndex, this.ChaIndex);
+    }
+  }
+
+  delSetion(i: number, j: number) {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    this.lesson.chapters[j].section.splice(i, 1);
+    localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    if (this.ChaIndex === j && this.SecIndex === i) {
+      this.ChaIndex = -1;
+      this.SecIndex = -1;
+      this.changeIndex(this.SecIndex, this.ChaIndex);
+    }
   }
 
   save() {
@@ -119,6 +157,12 @@ export class CharpterlistComponent implements OnInit {
   changeIndex(i: number, j: number) {
     this.SecIndex = i;
     this.ChaIndex = j;
+    localStorage.setItem('SecIndex', i.toString());
+    localStorage.setItem('ChaIndex', j.toString());
+    inx.ChaIndex = j;
+    inx.SecIndex = i;
+    this.childEvent.emit(inx);
   }
+
 }
 

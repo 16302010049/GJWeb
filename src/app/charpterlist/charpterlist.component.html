@@ -4,22 +4,29 @@
 <ul>
   <li *ngFor="let charpter of lesson.chapters;let j = index">
     <mat-icon>book</mat-icon>
-         <span> Chapter{{j+1}} {{charpter.chapter_name}}</span>
-        <mat-icon class="lefticon" (click)="upChapter(j)">arrow_upward</mat-icon>
-        <mat-icon (click)="downChapter(j)">arrow_downward</mat-icon>
-        <mat-icon (click)="delChapter(j)">delete</mat-icon>
-        <mat-icon (click)="openDialog(j)">add_box</mat-icon>
+    <span> Chapter{{j + 1}} {{charpter.chapter_name}}</span>
+    <div *ngIf="modified">
+      <mat-icon class="lefticon" (click)="upChapter(j)">arrow_upward</mat-icon>
+      <mat-icon (click)="downChapter(j)">arrow_downward</mat-icon>
+      <mat-icon (click)="delChapter(j)">delete</mat-icon>
+      <mat-icon (click)="openDialog(j)">add_box</mat-icon>
+    </div>
     <ul *ngIf="charpter.section.length>0">
       <li *ngFor="let sec of charpter.section;let i = index">
         <button mat-icon-button disabled class="space"></button>
         <mat-icon>turned_in</mat-icon>
-        <span class="sec" [ngStyle]="{'color':ChaIndex ===j && SecIndex === i ?'red':'black'}" (click)="changeIndex(i,j)">Section{{i+1}} {{sec.sectionname}}</span>
-        <mat-icon class="lefticon" (click)="upSetion(i,j)">arrow_upward</mat-icon>
-        <mat-icon (click)="downSetion(i,j)">arrow_downward</mat-icon>
-        <mat-icon>delete</mat-icon>
+        <span class="sec" [ngStyle]="{'color':ChaIndex ===j && SecIndex === i ?'red':'black'}"
+              (click)="changeIndex(i,j)">Section{{i + 1}} {{sec.sectionname}}</span>
+        <div *ngIf="modified">
+          <mat-icon class="lefticon" (click)="upSetion(i,j)">arrow_upward</mat-icon>
+          <mat-icon (click)="downSetion(i,j)">arrow_downward</mat-icon>
+          <mat-icon (click)="delSetion(i,j)">delete</mat-icon>
+        </div>
       </li>
     </ul>
   </li>
 </ul>
-<button mat-raised-button color="primary" class="addChapter" (click)="openDialog2()" class="fun">增加章程</button>
-<button mat-raised-button color="primary" class="addChapter" class="fun" (click)="save()">保存修改</button>
+<div *ngIf="modified">
+  <button mat-raised-button color="primary" class="addChapter" (click)="openDialog2()" class="fun">增加章程</button>
+  <button mat-raised-button color="primary" id="po" (click)="save()">保存修改</button>
+</div>

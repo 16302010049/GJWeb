@@ -1,10 +1,10 @@
 
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
-    <app-charpterlist [modified]="true" ></app-charpterlist>
+    <app-charpterlist [modified]="true" (childEvent) = "getChildEvent($event)"></app-charpterlist>
   </mat-drawer>
   <mat-drawer-content>
     <mat-toolbar><mat-toolbar-row><span>内容设计</span></mat-toolbar-row></mat-toolbar>
-    <app-question></app-question>
+    <app-question [ChaIndex]="ChaIndex" [SecIndex]="SecIndex" [lesson]="lesson"></app-question>
   </mat-drawer-content>
 </mat-drawer-container>

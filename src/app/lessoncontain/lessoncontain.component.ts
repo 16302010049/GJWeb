@@ -3,6 +3,7 @@ import {Chatpter, Course, section} from '../dataType/course';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {ChapterdialogComponent} from '../chapterdialog/chapterdialog.component';
 import {LocationStrategy} from '@angular/common';
+import {Index} from '../dataType';
 
 // tslint:disable-next-line:prefer-const
 
@@ -15,12 +16,23 @@ import {LocationStrategy} from '@angular/common';
 export class LessoncontainComponent implements OnInit {
   animal: string;
   name: string;
+  ChaIndex: number;
+  SecIndex: number;
   @Input() lesson: Course;
 
   constructor(public dialog: MatDialog) {
+    this.ChaIndex = -1;
+    this.SecIndex = -1;
   }
 
   ngOnInit() {
-    console.log(this.lesson);
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
   }
+
+  getChildEvent(inx: Index) {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    this.ChaIndex = inx.ChaIndex;
+    this.SecIndex = inx.SecIndex;
+  }
+
 }
