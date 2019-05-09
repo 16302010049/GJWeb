@@ -1,24 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Course_student} from '../dataType/course_student';
+import {Course} from '../dataType/course';
+import {StudentService} from '../service/student.service';
+import {Student} from '../dataType/student';
+import {MatTable} from '@angular/material';
 
 export interface PeriodicElement {
+  id: string;
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  Student_number: string;
+  progress: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+//let temp = {} as PeriodicElement;
+let ELEMENT_DATA: PeriodicElement[] = [];
+let courseStudent = {} as Course_student;
+let Stu = {} as Student;
 
 @Component({
   selector: 'app-studenttable',
@@ -26,11 +23,42 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./studenttable.component.css']
 })
 export class StudenttableComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  @ViewChild(MatTable) private table: MatTable<any>;
+  displayedColumns: string[] = ['id', 'name', 'Student_number', 'progress'];
+  dataSource: PeriodicElement[] = [];
+  lesson: Course;
+  op: number;
+
+  constructor(private service: StudentService) {
+  }
 
   ngOnInit() {
+    this.op = 0;
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    this.service.getStudnetList(this.lesson).subscribe(data => {
+        courseStudent = data[0];
+        this.getStudentList(courseStudent.student_list.length);
+      }
+    );
+  }
+
+  getStudentList(len: number) {
+    if (this.op < len) {
+      this.service.getStudentInfo(courseStudent.student_list[this.op].student_id).subscribe(datap => {
+        Stu = datap;
+        let temp = {
+          id: Stu.id,
+          name: Stu.name,
+          Student_number : Stu.studentNumber,
+          progress : courseStudent.student_list[this.op].progress
+        };
+        this.dataSource.push(temp);
+        this.op++;
+        this.getStudentList(len);
+      });
+    } else {
+      this.table.renderRows();
+    }
   }
 
 }

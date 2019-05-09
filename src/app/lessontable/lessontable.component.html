@@ -54,4 +54,5 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
-<button mat-raised-button color="primary" class="open" (click)="add()">开设</button>
+<button mat-raised-button color="primary" class="open" (click)="add()" *ngIf="Stepper.selectedIndex == 4">开设</button>
+<button mat-raised-button color="primary" class="open" disabled *ngIf="Stepper.selectedIndex != 4">开设</button>

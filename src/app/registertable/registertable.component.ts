@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {user} from '../dataType/user';
 import {RegisterService} from '../service/register.service';
 import {UUID} from 'angular2-uuid';
+import {MatVerticalStepper} from '@angular/material';
 
 /**
  * @title Stepper vertical
@@ -16,6 +17,7 @@ let userp = {} as user;
   styleUrls: ['./registertable.component.css']
 })
 export class RegistertableComponent implements OnInit {
+  @ViewChild(MatVerticalStepper) stepper: MatVerticalStepper;
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;

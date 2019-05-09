@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Course, singleChoice} from '../dataType/course';
 import {LessonService} from '../service/lesson.service';
+import {SectiondialogComponent} from '../sectiondialog/sectiondialog.component';
+import {MatDialog} from '@angular/material';
+import {HomeworkdialogComponent} from '../homeworkdialog/homeworkdialog.component';
 
 let SC = {} as singleChoice;
 
@@ -14,10 +17,11 @@ export class HomeworkdesigmComponent implements OnInit {
   @Input() SecIndex: number;
   @Input() ChaIndex: number;
 
-  constructor(private service: LessonService) {
+  constructor(private service: LessonService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
   }
 
   addSC() {
@@ -69,5 +73,16 @@ export class HomeworkdesigmComponent implements OnInit {
   makeRight(choice: string, i: number) {
     this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i].right_choice = choice;
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
+  }
+
+  openDialog(): void {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
+    const dialogRef = this.dialog.open(HomeworkdialogComponent, {
+      width: '800px',
+      data: {lesson: this.lesson, ChaIndex: this.ChaIndex, SecIndex: this.SecIndex}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

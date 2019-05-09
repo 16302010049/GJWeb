@@ -5,6 +5,7 @@ import {SectiondialogComponent} from '../sectiondialog/sectiondialog.component';
 import {ChapterdialogComponent} from '../chapterdialog/chapterdialog.component';
 import {LessonService} from '../service/lesson.service';
 import {Index} from '../dataType';
+import {RenamedialogComponent} from '../renamedialog/renamedialog.component';
 
 let se = {} as section;
 let temp = {} as Chatpter;
@@ -164,5 +165,32 @@ export class CharpterlistComponent implements OnInit {
     this.childEvent.emit(inx);
   }
 
+  renameCha(j: number) {
+    const dialogRef = this.dialog.open(RenamedialogComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.lesson = JSON.parse(localStorage.getItem('lesson'));
+      this.animal = result;
+      this.lesson.chapters[j].chapter_name = this.animal;
+      localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    });
+  }
+
+  renameSec(j: number, i: number) {
+    const dialogRef = this.dialog.open(RenamedialogComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.lesson = JSON.parse(localStorage.getItem('lesson'));
+      this.animal = result;
+      this.lesson.chapters[j].section[i].sectionname = this.animal;
+      localStorage.setItem('lesson', JSON.stringify(this.lesson));
+    });
+  }
 }
 

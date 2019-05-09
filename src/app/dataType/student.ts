@@ -5,14 +5,8 @@ export interface Student {
   sex: string;
   name: string;
   studentNumber: string;
-  take_course: study_course[];
-
-}
-
-export interface study_course {
-  course_name: string;
-  has_study_section: string[];
-  progress: number;
+  take_course: string[];
+  collect: collect[];
 }
 
 export interface collect {

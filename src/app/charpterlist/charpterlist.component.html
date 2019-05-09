@@ -6,7 +6,8 @@
     <mat-icon>book</mat-icon>
     <span> Chapter{{j + 1}} {{charpter.chapter_name}}</span>
     <div *ngIf="modified">
-      <mat-icon class="lefticon" (click)="upChapter(j)">arrow_upward</mat-icon>
+      <mat-icon class="lefticon" (click)="renameCha(j)">build</mat-icon>
+      <mat-icon (click)="upChapter(j)">arrow_upward</mat-icon>
       <mat-icon (click)="downChapter(j)">arrow_downward</mat-icon>
       <mat-icon (click)="delChapter(j)">delete</mat-icon>
       <mat-icon (click)="openDialog(j)">add_box</mat-icon>
@@ -18,7 +19,8 @@
         <span class="sec" [ngStyle]="{'color':ChaIndex ===j && SecIndex === i ?'red':'black'}"
               (click)="changeIndex(i,j)">Section{{i + 1}} {{sec.sectionname}}</span>
         <div *ngIf="modified">
-          <mat-icon class="lefticon" (click)="upSetion(i,j)">arrow_upward</mat-icon>
+          <mat-icon class="lefticon" (click)="renameSec(j,i)" >build</mat-icon>
+          <mat-icon (click)="upSetion(i,j)">arrow_upward</mat-icon>
           <mat-icon (click)="downSetion(i,j)">arrow_downward</mat-icon>
           <mat-icon (click)="delSetion(i,j)">delete</mat-icon>
         </div>

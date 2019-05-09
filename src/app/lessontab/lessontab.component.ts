@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Course} from '../dataType/course';
 
 @Component({
@@ -14,5 +14,8 @@ export class LessontabComponent implements OnInit {
 
   ngOnInit() {
     this.lesson =  JSON.parse(localStorage.getItem('lesson'));
+    console.log(this.lesson);
   }
+
+
 }

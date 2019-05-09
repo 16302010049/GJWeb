@@ -43,4 +43,5 @@
     </div>
   </mat-step>
 </mat-vertical-stepper>
-<button mat-raised-button color="primary" id="zhuce" (click)="register()">注册</button>
+<button mat-raised-button color="primary" id="zhuce" (click)="register()" *ngIf="stepper.selectedIndex==3">注册</button>
+<button mat-raised-button color="primary" id="zhuce"  disabled *ngIf="stepper.selectedIndex!=3">注册</button>

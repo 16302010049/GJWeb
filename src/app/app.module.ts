@@ -35,6 +35,8 @@ import {GlobalModule} from './global/global.module';
 import {LessoncardComponent} from './lessoncard/lessoncard.component';
 import {ChapterdialogComponent} from './chapterdialog/chapterdialog.component';
 import {SectiondialogComponent} from './sectiondialog/sectiondialog.component';
+import {HomeworkdialogComponent} from './homeworkdialog/homeworkdialog.component';
+import { RenamedialogComponent } from './renamedialog/renamedialog.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import {SectiondialogComponent} from './sectiondialog/sectiondialog.component';
     HomeworkdesigmComponent,
     LessoncardComponent,
     ChapterdialogComponent,
-    SectiondialogComponent
+    SectiondialogComponent,
+    HomeworkdialogComponent,
+    RenamedialogComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +86,7 @@ import {SectiondialogComponent} from './sectiondialog/sectiondialog.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ChapterdialogComponent, SectiondialogComponent]
+  entryComponents: [ChapterdialogComponent, SectiondialogComponent, HomeworkdialogComponent,RenamedialogComponent]
 })
 export class AppModule {
 }

@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Course} from '../dataType/course';
 import {UUID} from 'angular2-uuid';
 import {LessonService} from '../service/lesson.service';
+import {MatHorizontalStepper, MatStepper} from '@angular/material';
 
 let lesson = {} as Course;
 
@@ -12,6 +13,7 @@ let lesson = {} as Course;
   styleUrls: ['./lessontable.component.css']
 })
 export class LessontableComponent implements OnInit {
+  @ViewChild(MatHorizontalStepper) Stepper: MatHorizontalStepper;
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -34,6 +36,7 @@ export class LessontableComponent implements OnInit {
     this.fourthFormGroup = this._formBuilder.group({
       fourthCtrl: ['', Validators.required]
     });
+    console.log(this.Stepper);
   }
 
   add() {
