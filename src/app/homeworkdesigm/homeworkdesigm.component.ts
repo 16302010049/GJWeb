@@ -27,10 +27,10 @@ export class HomeworkdesigmComponent implements OnInit {
   addSC() {
     this.lesson = JSON.parse(localStorage.getItem('lesson'));
     SC.question = '请输入问题';
-    SC.choiceA = '请输入选项A的内容';
-    SC.choiceB = '请输入选项B的内容';
-    SC.choiceC = '请输入选项C的内容';
-    SC.choiceD = '请输入选项D的内容';
+    SC.choiceA = '选项A';
+    SC.choiceB = '选项B';
+    SC.choiceC = '选项C';
+    SC.choiceD = '选项D';
     SC.right_choice = 'A';
     this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice.push(SC);
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
@@ -68,6 +68,7 @@ export class HomeworkdesigmComponent implements OnInit {
   save() {
     this.lesson = JSON.parse(localStorage.getItem('lesson'));
     this.service.updateLesson(this.lesson);
+    alert('已保存');
   }
 
   makeRight(choice: string, i: number) {

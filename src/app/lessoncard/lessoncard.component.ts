@@ -22,6 +22,7 @@ export class LessoncardComponent implements OnInit {
   }
 
   delete(lessonid: string) {
+    this.service.deleteCourseStudent(lessonid)
     this.service.deleLesson(lessonid);
   }
 }

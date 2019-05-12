@@ -13,9 +13,12 @@ export class LessontabComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.lesson =  JSON.parse(localStorage.getItem('lesson'));
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
     console.log(this.lesson);
   }
 
+  return() {
+    location.href = 'main';
+  }
 
 }

@@ -1,6 +1,7 @@
 <mat-tab-group>
   <mat-tab label="我开的课" (click)="fresh()">
     <app-lessoncard [Lessons]="lessons"></app-lessoncard>
+    <h2 *ngIf="lessons.length==0">当前还没有开课</h2>
   </mat-tab>
   <mat-tab label="开新课程">
     <app-lessontable></app-lessontable>

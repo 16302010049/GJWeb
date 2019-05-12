@@ -36,6 +36,7 @@ export class QuestionComponent implements OnInit {
   saveQA() {
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
     this.service.updateLesson(this.lesson);
+    alert('已保存');
   }
 
   upQA(i: number) {

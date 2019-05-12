@@ -1,5 +1,8 @@
-<mat-toolbar>
-  <mat-toolbar-row><span>章节体系</span></mat-toolbar-row>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <mat-icon id="sp">apps</mat-icon>
+    <span>章节体系</span>
+  </mat-toolbar-row>
 </mat-toolbar>
 <ul>
   <li *ngFor="let charpter of lesson.chapters;let j = index">
@@ -16,7 +19,7 @@
       <li *ngFor="let sec of charpter.section;let i = index">
         <button mat-icon-button disabled class="space"></button>
         <mat-icon>turned_in</mat-icon>
-        <span class="sec" [ngStyle]="{'color':ChaIndex ===j && SecIndex === i ?'red':'black'}"
+        <span class="sec" [ngStyle]="{'color':ChaIndex ===j && SecIndex === i ?'blue':'black'}"
               (click)="changeIndex(i,j)">Section{{i + 1}} {{sec.sectionname}}</span>
         <div *ngIf="modified">
           <mat-icon class="lefticon" (click)="renameSec(j,i)" >build</mat-icon>
@@ -32,3 +35,4 @@
   <button mat-raised-button color="primary" class="addChapter" (click)="openDialog2()" class="fun">增加章程</button>
   <button mat-raised-button color="primary" id="po" (click)="save()">保存修改</button>
 </div>
+<button mat-raised-button color="primary"  (click)="fresh()" *ngIf="!modified" id="fresh">刷新</button>

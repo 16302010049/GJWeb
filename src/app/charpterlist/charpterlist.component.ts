@@ -43,14 +43,14 @@ export class CharpterlistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(i);
-      this.animal = result;
-      console.log(this.animal);
-      se.sectionname = this.animal;
-      se.QA = [];
-      se.singleChoice = [];
-      this.lesson.chapters[i].section.push(se);
-      localStorage.setItem('lesson', JSON.stringify(this.lesson));
+      if (result) {
+        this.animal = result;
+        se.sectionname = this.animal;
+        se.QA = [];
+        se.singleChoice = [];
+        this.lesson.chapters[i].section.push(se);
+        localStorage.setItem('lesson', JSON.stringify(this.lesson));
+      }
     });
   }
 
@@ -61,14 +61,16 @@ export class CharpterlistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.lesson = JSON.parse(localStorage.getItem('lesson'));
-      console.log('The dialog was closed');
-      this.animal = result;
-      console.log(this.animal);
-      temp.chapter_name = this.animal;
-      temp.section = [];
-      this.lesson.chapters.push(temp);
-      localStorage.setItem('lesson', JSON.stringify(this.lesson));
+      if (result) {
+        this.lesson = JSON.parse(localStorage.getItem('lesson'));
+        console.log('The dialog was closed');
+        this.animal = result;
+        console.log(this.animal);
+        temp.chapter_name = this.animal;
+        temp.section = [];
+        this.lesson.chapters.push(temp);
+        localStorage.setItem('lesson', JSON.stringify(this.lesson));
+      }
     });
   }
 
@@ -153,6 +155,7 @@ export class CharpterlistComponent implements OnInit {
   save() {
     this.lesson = JSON.parse(localStorage.getItem('lesson'));
     this.service.updateLesson(this.lesson);
+    alert('已保存');
   }
 
   changeIndex(i: number, j: number) {
@@ -172,10 +175,12 @@ export class CharpterlistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.lesson = JSON.parse(localStorage.getItem('lesson'));
-      this.animal = result;
-      this.lesson.chapters[j].chapter_name = this.animal;
-      localStorage.setItem('lesson', JSON.stringify(this.lesson));
+      if (result) {
+        this.lesson = JSON.parse(localStorage.getItem('lesson'));
+        this.animal = result;
+        this.lesson.chapters[j].chapter_name = this.animal;
+        localStorage.setItem('lesson', JSON.stringify(this.lesson));
+      }
     });
   }
 
@@ -186,11 +191,17 @@ export class CharpterlistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.lesson = JSON.parse(localStorage.getItem('lesson'));
-      this.animal = result;
-      this.lesson.chapters[j].section[i].sectionname = this.animal;
-      localStorage.setItem('lesson', JSON.stringify(this.lesson));
+      if (result) {
+        this.lesson = JSON.parse(localStorage.getItem('lesson'));
+        this.animal = result;
+        this.lesson.chapters[j].section[i].sectionname = this.animal;
+        localStorage.setItem('lesson', JSON.stringify(this.lesson));
+      }
     });
+  }
+
+  fresh() {
+    this.lesson = JSON.parse(localStorage.getItem('lesson'));
   }
 }
 

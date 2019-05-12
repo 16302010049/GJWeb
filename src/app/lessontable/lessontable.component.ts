@@ -4,6 +4,7 @@ import {Course} from '../dataType/course';
 import {UUID} from 'angular2-uuid';
 import {LessonService} from '../service/lesson.service';
 import {MatHorizontalStepper, MatStepper} from '@angular/material';
+import {stu_info} from '../dataType/course_student';
 
 let lesson = {} as Course;
 
@@ -47,7 +48,13 @@ export class LessontableComponent implements OnInit {
     lesson.introduce = this.fourthFormGroup.get('fourthCtrl').value;
     lesson.teacher = localStorage.getItem('username');
     lesson.chapters = [];
+    var course_student = {
+      id: UUID.UUID(),
+      course_id: lesson.id,
+      student_list: []
+    };
     this.service.addLesson(lesson);
+    this.service.addCourseStudent(course_student)
     location.reload();
   }
 }

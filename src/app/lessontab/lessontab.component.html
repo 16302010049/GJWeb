@@ -1,5 +1,8 @@
-<mat-toolbar>
+<mat-toolbar >
+  <mat-icon>book</mat-icon>
   <span>{{lesson.title}}</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button color="primary" (click)="return()">返回列表</button>
 </mat-toolbar>
 <mat-tab-group>
   <mat-tab label="章节安排"> <app-lessoncontain [lesson]="lesson"></app-lessoncontain> </mat-tab>

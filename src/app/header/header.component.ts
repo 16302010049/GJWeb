@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('username')) {
       this.username = localStorage.getItem('username');
     } else {
-      this.username = '未定义';
+      this.username = '未登录';
     }
   }
 
