@@ -15,12 +15,12 @@ export class LessonService {
   constructor(private http: HttpClient) {
   }
 
-  addLesson(lesson: Course) {
-    this.http.post('http://localhost:5300/courses', lesson, httpOptions).subscribe();
+  addLesson(lesson) {
+    this.http.post('http://localhost:8080/teacher/addLesson', lesson).subscribe();
   }
 
-  queryLesson(teacher: string): any {
-    return this.http.get('http://localhost:5300/courses?teacher=' + teacher);
+  queryLesson(teacher_id: number): any {
+    return this.http.get('http://localhost:8080/teacher/getAllLesson?teacher_id=' + teacher_id);
     location.reload();
   }
 
@@ -30,7 +30,7 @@ export class LessonService {
   }
 
   updateLesson(lesson: Course) {
-    this.http.put('http://localhost:5300/courses/' + lesson.id, lesson, httpOptions).subscribe();
+    this.http.post('http://localhost:8080/teacher/updateLesson', lesson, httpOptions).subscribe();
   }
 
   addCourseStudent(Course_Student: Course_student) {

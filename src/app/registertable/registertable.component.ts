@@ -40,13 +40,20 @@ export class RegistertableComponent implements OnInit {
   }
 
   register() {
-    userp.id = UUID.UUID();
-    userp.name = this.firstFormGroup.get('firstCtrl').value;
-    userp.password = this.secondFormGroup.get('secondCtrl').value;
-    userp.head = this.thirdFormGroup.get('thirdCtrl').value;
-    userp.open_course = [];
-    console.log(JSON.stringify(userp));
-    this.registersever.postUser(userp);
+    const objFile = document.getElementById('img') as HTMLInputElement;
+    /*const teacher = {
+      name: this.firstFormGroup.get('firstCtrl').value,
+      password: this.secondFormGroup.get('secondCtrl').value,
+      head: objFile.files[0]
+    };*/
+    // tslint:disable-next-line:prefer-const
+    var teacher = new FormData();
+    teacher.append('name', this.firstFormGroup.get('firstCtrl').value);
+    teacher.append('password', this.secondFormGroup.get('secondCtrl').value);
+    teacher.append('head', objFile.files[0]);
+    // userp.open_course = [];
+    console.log(teacher);
+    this.registersever.postUser(teacher);
     location.href = 'login';
   }
 

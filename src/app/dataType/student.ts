@@ -1,6 +1,6 @@
 export interface Student {
   id;
-  weixinhao: string;
+  signature: string;
   mailbox: string;
   sex: string;
   name: string;

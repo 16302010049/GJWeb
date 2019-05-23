@@ -46,7 +46,7 @@ export class CharpterlistComponent implements OnInit {
       if (result) {
         this.animal = result;
         se.sectionname = this.animal;
-        se.QA = [];
+        se.question = [];
         se.singleChoice = [];
         this.lesson.chapters[i].section.push(se);
         localStorage.setItem('lesson', JSON.stringify(this.lesson));

@@ -41,20 +41,15 @@ export class LessontableComponent implements OnInit {
   }
 
   add() {
-    lesson.id = UUID.UUID();
-    lesson.title = this.firstFormGroup.get('firstCtrl').value;
-    lesson.subtitle = this.secondFormGroup.get('secondCtrl').value;
-    lesson.background = this.thirdFormGroup.get('thirdCtrl').value;
-    lesson.introduce = this.fourthFormGroup.get('fourthCtrl').value;
-    lesson.teacher = localStorage.getItem('username');
-    lesson.chapters = [];
-    var course_student = {
-      id: UUID.UUID(),
-      course_id: lesson.id,
-      student_list: []
-    };
-    this.service.addLesson(lesson);
-    this.service.addCourseStudent(course_student)
-    location.reload();
+    var formdata = new FormData();
+    var teacher = JSON.parse(localStorage.getItem('teacher'));
+    const objFile = document.getElementById('img') as HTMLInputElement;
+    formdata.append('teacher_id', teacher.id);
+    formdata.append('title', this.firstFormGroup.get('firstCtrl').value);
+    formdata.append('subtitle', this.secondFormGroup.get('secondCtrl').value);
+    formdata.append('background', objFile.files[0]);
+    formdata.append('introduce', this.fourthFormGroup.get('fourthCtrl').value);
+    formdata.append('content', '[]');
+    this.service.addLesson(formdata);
   }
 }

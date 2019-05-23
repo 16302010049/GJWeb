@@ -19,14 +19,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('username')) {
+    if (localStorage.getItem('teacher')) {
       location.href = 'main';
     }
     this.loginSever.getUser().subscribe(users => this.users = users);
   }
 
   logincheck() {
-    let has = false;
+    /*let has = false;
     this.loginSever.getUser().subscribe(users => this.users = users);
     console.log(JSON.stringify(this.users));
     for (const item of this.users) {
@@ -40,7 +40,20 @@ export class LoginComponent implements OnInit {
       location.href = 'main';
     } else {
       alert('用户名或密码错误');
-    }
+    }*/
+    let info = new FormData();
+    info.append('name', this.name);
+    info.append('password', this.password);
+    this.loginSever.checkUser(info).subscribe(
+      data => {
+        if (data != null) {
+          localStorage.setItem('teacher', JSON.stringify(data));
+          location.href = 'main';
+        } else {
+          alert('用户名或密码错误');
+        }
+      }
+    );
   }
 
   register() {

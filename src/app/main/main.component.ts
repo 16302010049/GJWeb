@@ -14,11 +14,12 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.queryLesson(localStorage.getItem('username')).subscribe(users => this.lessons = users);
+    var teacher = JSON.parse(localStorage.getItem('teacher'));
+    this.service.queryLesson(teacher.id).subscribe(users => this.lessons = users);
   }
 
   fresh() {
-    this.service.queryLesson(localStorage.getItem('username')).subscribe(users => this.lessons = users);
+  //  this.service.queryLesson(localStorage.getItem('username')).subscribe(users => this.lessons = users);
   }
 
 }

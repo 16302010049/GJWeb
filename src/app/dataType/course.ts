@@ -16,11 +16,11 @@ export interface Chatpter {
 // tslint:disable-next-line:class-name
 export interface section {
   sectionname: string;
-  QA: QA[];
+  question: question[];
   singleChoice: singleChoice[];
 }
 
-export interface QA {
+export interface question{
   question: string;
   answer: string;
 }

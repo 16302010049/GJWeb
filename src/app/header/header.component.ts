@@ -11,20 +11,23 @@ import {GlobalService} from '../service/global.service';
 export class HeaderComponent implements OnInit {
   public isLogin = false;
   username;
+  teacher;
 
   constructor(private global: GlobalService) {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('username')) {
-      this.username = localStorage.getItem('username');
+    if (localStorage.getItem('teacher')) {
+      this.teacher = JSON.parse(localStorage.getItem('teacher'));
+      this.username = this.teacher.name;
+      document.getElementById('header').style.backgroundImage = 'url(' + this.teacher.head + ')';
     } else {
       this.username = '未登录';
     }
   }
 
   logout() {
-    localStorage.removeItem('username');
+    localStorage.removeItem('teacher');
     location.href = 'login';
   }
 }

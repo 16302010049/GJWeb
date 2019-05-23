@@ -1,7 +1,7 @@
 <div *ngIf="SecIndex>=0&&ChaIndex>=0">
  <h3>Chapter{{ChaIndex+1}} {{lesson.chapters[ChaIndex].chapter_name}}- - - -Section{{SecIndex+1}} {{lesson.chapters[ChaIndex].section[SecIndex].sectionname}}</h3>
 <ol>
-  <li *ngFor="let qa of lesson.chapters[ChaIndex].section[SecIndex].QA;let i = index">
+  <li *ngFor="let qa of lesson.chapters[ChaIndex].section[SecIndex].question;let i = index">
     <div>
     <mat-form-field class="example-full-width" mat-line>
       <input matInput placeholder="问题"   [(ngModel)] = "qa.question" (blur)="tempSave()">

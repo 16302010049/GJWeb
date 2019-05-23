@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Course, QA} from '../dataType/course';
+import {Course, question} from '../dataType/course';
 import {LessonService} from '../service/lesson.service';
 
-let qa = {} as QA;
+let qa = {} as question;
 
 @Component({
   selector: 'app-question',
@@ -25,7 +25,7 @@ export class QuestionComponent implements OnInit {
     this.lesson = JSON.parse(localStorage.getItem('lesson'));
     qa.question = '请输入问题';
     qa.answer = '请输入答案';
-    this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA.push(qa);
+    this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question.push(qa);
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
   }
 
@@ -41,26 +41,26 @@ export class QuestionComponent implements OnInit {
 
   upQA(i: number) {
     if (i > 0) {
-      qa = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA[i - 1];
+      qa = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i - 1];
       // tslint:disable-next-line:max-line-length
-      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA[i - 1] = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA[i];
-      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA[i] = qa;
+      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i - 1] = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i];
+      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i] = qa;
       localStorage.setItem('lesson', JSON.stringify(this.lesson));
     }
   }
 
   downQA(i: number) {
-    if (i < this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA.length - 1) {
-      qa = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA[i + 1];
+    if (i < this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question.length - 1) {
+      qa = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i + 1];
       // tslint:disable-next-line:max-line-length
-      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA[i + 1] = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA[i];
-      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA[i] = qa;
+      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i + 1] = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i];
+      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i] = qa;
       localStorage.setItem('lesson', JSON.stringify(this.lesson));
     }
   }
 
   delQA(i: number) {
-    this.lesson.chapters[this.ChaIndex].section[this.SecIndex].QA.splice(i, 1);
+    this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question.splice(i, 1);
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
   }
 }

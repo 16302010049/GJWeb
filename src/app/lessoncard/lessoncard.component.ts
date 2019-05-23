@@ -9,11 +9,14 @@ import {LessonService} from '../service/lesson.service';
 })
 export class LessoncardComponent implements OnInit {
   @Input() Lessons: Course[];
+  teacher;
 
   constructor(private service: LessonService) {
   }
 
   ngOnInit() {
+    this.teacher = JSON.parse(localStorage.getItem('teacher'));
+    document.getElementById('header').style.backgroundImage = 'url(' + this.teacher.head + ')';
   }
 
   jump(lesson: Course) {
@@ -22,7 +25,7 @@ export class LessoncardComponent implements OnInit {
   }
 
   delete(lessonid: string) {
-    this.service.deleteCourseStudent(lessonid)
+    this.service.deleteCourseStudent(lessonid);
     this.service.deleLesson(lessonid);
   }
 }
