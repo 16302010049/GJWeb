@@ -6,9 +6,9 @@ import {Student} from '../dataType/student';
 import {MatTable} from '@angular/material';
 
 export interface PeriodicElement {
-  id: string;
+  student_id: string;
   name: string;
-  Student_number: string;
+  studentnumber: string;
   progress: number;
 }
 
@@ -24,7 +24,7 @@ let Stu = {} as Student;
 })
 export class StudenttableComponent implements OnInit {
   @ViewChild(MatTable) private table: MatTable<any>;
-  displayedColumns: string[] = ['id', 'name', 'Student_number', 'progress'];
+  displayedColumns: string[] = ['student_id', 'name', 'studentnumber', 'progress'];
   dataSource: PeriodicElement[] = [];
   lesson: Course;
   op: number;
@@ -33,32 +33,15 @@ export class StudenttableComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource = [];
     this.op = 0;
     this.lesson = JSON.parse(localStorage.getItem('lesson'));
-    this.service.getStudnetList(this.lesson).subscribe(data => {
-        courseStudent = data[0];
-        this.getStudentList(courseStudent.student_list.length);
+    this.service.getStudnetList(this.lesson.id).subscribe(data => {
+        if (data.length !== 0) {
+          this.dataSource = data;
+        }
       }
     );
-  }
-
-  getStudentList(len: number) {
-    if (this.op < len) {
-      this.service.getStudentInfo(courseStudent.student_list[this.op].student_id).subscribe(datap => {
-        Stu = datap;
-        let temp = {
-          id: Stu.id,
-          name: Stu.name,
-          Student_number : Stu.studentNumber,
-          progress : courseStudent.student_list[this.op].progress
-        };
-        this.dataSource.push(temp);
-        this.op++;
-        this.getStudentList(len);
-      });
-    } else {
-      this.table.renderRows();
-    }
   }
 
 }

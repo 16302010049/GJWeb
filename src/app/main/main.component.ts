@@ -8,7 +8,7 @@ import {LessonService} from '../service/lesson.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  lessons: Course[];
+  lessons: Course[] = [];
 
   constructor(private service: LessonService) {
   }

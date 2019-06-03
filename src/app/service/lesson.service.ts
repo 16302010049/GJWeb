@@ -15,18 +15,16 @@ export class LessonService {
   constructor(private http: HttpClient) {
   }
 
-  addLesson(lesson) {
-    this.http.post('http://localhost:8080/teacher/addLesson', lesson).subscribe();
+  addLesson(lesson): any {
+    return this.http.post('http://localhost:8080/teacher/addLesson', lesson);
   }
 
   queryLesson(teacher_id: number): any {
     return this.http.get('http://localhost:8080/teacher/getAllLesson?teacher_id=' + teacher_id);
-    location.reload();
   }
 
-  deleLesson(lessonid: string) {
-    this.http.delete('http://localhost:5300/courses/' + lessonid).subscribe();
-    location.reload();
+  deleteLesson(lessonid: number) {
+    this.http.get('http://localhost:8080/teacher/deleteCourse?course_id=' + lessonid).subscribe();
   }
 
   updateLesson(lesson: Course) {

@@ -50,6 +50,8 @@ export class LessontableComponent implements OnInit {
     formdata.append('background', objFile.files[0]);
     formdata.append('introduce', this.fourthFormGroup.get('fourthCtrl').value);
     formdata.append('content', '[]');
-    this.service.addLesson(formdata);
+    this.service.addLesson(formdata).subscribe(data => {
+      location.reload();
+    });
   }
 }

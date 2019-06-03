@@ -24,8 +24,8 @@ export class LessoncardComponent implements OnInit {
     location.href = 'detail';
   }
 
-  delete(lessonid: string) {
-    this.service.deleteCourseStudent(lessonid);
-    this.service.deleLesson(lessonid);
+  delete(lessonid: number) {
+    this.service.deleteLesson(lessonid);
+    location.reload();
   }
 }

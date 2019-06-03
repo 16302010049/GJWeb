@@ -22,25 +22,9 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem('teacher')) {
       location.href = 'main';
     }
-    this.loginSever.getUser().subscribe(users => this.users = users);
   }
 
   logincheck() {
-    /*let has = false;
-    this.loginSever.getUser().subscribe(users => this.users = users);
-    console.log(JSON.stringify(this.users));
-    for (const item of this.users) {
-      if (item.name === this.name && item.password === this.password) {
-        has = true;
-        break;
-      }
-    }
-    if (has) {
-      localStorage.setItem('username', this.name);
-      location.href = 'main';
-    } else {
-      alert('用户名或密码错误');
-    }*/
     let info = new FormData();
     info.append('name', this.name);
     info.append('password', this.password);

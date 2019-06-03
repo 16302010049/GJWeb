@@ -24,7 +24,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="thirdFormGroup" optional>
+  <mat-step [stepControl]="thirdFormGroup" >
     <form [formGroup]="thirdFormGroup">
       <ng-template matStepLabel>选择你的头像</ng-template>
         <input  type="file" accept="image/*"  id="img" formControlName="thirdCtrl" required  >

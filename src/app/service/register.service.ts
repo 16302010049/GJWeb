@@ -18,4 +18,8 @@ export class RegisterService {
   postUser(userp) {
     this.http.post('http://localhost:8080/teacher/register', userp).subscribe();
   }
+
+  checkName(name: string): any {
+    return this.http.get('http://localhost:8080/teacher/checkName?name=' + name);
+  }
 }

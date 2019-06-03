@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {user} from '../dataType/user';
 import {RegisterService} from '../service/register.service';
 import {UUID} from 'angular2-uuid';
@@ -40,21 +40,22 @@ export class RegistertableComponent implements OnInit {
   }
 
   register() {
-    const objFile = document.getElementById('img') as HTMLInputElement;
-    /*const teacher = {
-      name: this.firstFormGroup.get('firstCtrl').value,
-      password: this.secondFormGroup.get('secondCtrl').value,
-      head: objFile.files[0]
-    };*/
-    // tslint:disable-next-line:prefer-const
-    var teacher = new FormData();
-    teacher.append('name', this.firstFormGroup.get('firstCtrl').value);
-    teacher.append('password', this.secondFormGroup.get('secondCtrl').value);
-    teacher.append('head', objFile.files[0]);
-    // userp.open_course = [];
-    console.log(teacher);
-    this.registersever.postUser(teacher);
-    location.href = 'login';
+    this.registersever.checkName(this.firstFormGroup.get('firstCtrl').value).subscribe(data => {
+      if (data.message === 'Ok') {
+        const objFile = document.getElementById('img') as HTMLInputElement;
+        var teacher = new FormData();
+        teacher.append('name', this.firstFormGroup.get('firstCtrl').value);
+        teacher.append('password', this.secondFormGroup.get('secondCtrl').value);
+        teacher.append('head', objFile.files[0]);
+        // userp.open_course = [];
+        console.log(teacher);
+        this.registersever.postUser(teacher);
+        location.href = 'login';
+      } else {
+        alert('用户名已存在！');
+      }
+    });
+
   }
 
 }
