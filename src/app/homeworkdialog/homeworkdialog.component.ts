@@ -55,11 +55,8 @@ export class HomeworkdialogComponent implements OnInit {
         ELEMENT_DATA = [];
         var question = this.data.lesson.chapters[this.data.ChaIndex].section[this.data.SecIndex].singleChoice[i].question;
         for (const ar of answers) {
-          console.log(ar.question);
-          console.log(question);
           if (ar.question === question) {
-            console.log('hah');
-            let  temp2 = {
+            let temp2 = {
               id: ar.id,
               name: ar.name,
               choice: ar.choice,
@@ -70,53 +67,9 @@ export class HomeworkdialogComponent implements OnInit {
         }
         this.dataSource.push(ELEMENT_DATA);
       }
-      console.log(this.dataSource);
       this.tables.forEach(table => table.renderRows());
     });
   }
-
-
-  /*genAnswerTable(num: number, courseStudent: Course_student) {
-    if (num < courseStudent.student_list.length) {
-      this.service.getStudentInfo(courseStudent.student_list[num].student_id).subscribe(data => {
-        stude = data;
-        console.log(stude);
-        this.StudentInfoList.push(stude);
-        num++;
-        this.genAnswerTable(num, courseStudent);
-      });
-    } else {
-      for (let i = 0; i < this.data.lesson.chapters[this.data.ChaIndex].section[this.data.SecIndex].singleChoice.length; i++) {
-        ELEMENT_DATA = [];
-        this.Q = this.data.lesson.chapters[this.data.ChaIndex].section[this.data.SecIndex].singleChoice[i].question;
-        console.log(this.courseanswer);
-        console.log(this.Chaname);
-        console.log(this.Secname);
-        for (const ar of this.courseanswer) {
-          if (ar.chapter === this.Chaname && ar.section === this.Secname && ar.question === this.Q) {
-            for (const stu of this.StudentInfoList) {
-              if (stu.id === ar.student_id) {
-                let  temp2 = {
-                  id: stu.id,
-                  name: stu.name,
-                  choice: ar.choice,
-                  right_choice: this.data.lesson.chapters[this.data.ChaIndex].section[this.data.SecIndex].singleChoice[i].right_choice
-                };
-                ELEMENT_DATA.push(temp2);
-                break;
-              }
-            }
-          }
-        }
-        this.dataSource.push(ELEMENT_DATA);
-      }
-      console.log(this.dataSource);
-      console.log(this.tables);
-      this.tables.forEach(table => table.renderRows());
-    }
-  }
-*/
-
   onNoClick(): void {
     this.dialogRef.close();
   }

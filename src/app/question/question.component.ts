@@ -23,8 +23,8 @@ export class QuestionComponent implements OnInit {
 
   addQuestion() {
     this.lesson = JSON.parse(localStorage.getItem('lesson'));
-    qa.question = '请输入问题';
-    qa.answer = '请输入答案';
+    qa.question = '';
+    qa.answer = '';
     this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question.push(qa);
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
   }
@@ -43,7 +43,8 @@ export class QuestionComponent implements OnInit {
     if (i > 0) {
       qa = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i - 1];
       // tslint:disable-next-line:max-line-length
-      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i - 1] = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i];
+      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i - 1] =
+        this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i];
       this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i] = qa;
       localStorage.setItem('lesson', JSON.stringify(this.lesson));
     }
@@ -53,7 +54,8 @@ export class QuestionComponent implements OnInit {
     if (i < this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question.length - 1) {
       qa = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i + 1];
       // tslint:disable-next-line:max-line-length
-      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i + 1] = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i];
+      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i + 1] =
+        this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i];
       this.lesson.chapters[this.ChaIndex].section[this.SecIndex].question[i] = qa;
       localStorage.setItem('lesson', JSON.stringify(this.lesson));
     }

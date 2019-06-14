@@ -26,11 +26,11 @@ export class HomeworkdesigmComponent implements OnInit {
 
   addSC() {
     this.lesson = JSON.parse(localStorage.getItem('lesson'));
-    SC.question = '请输入问题';
-    SC.choiceA = '选项A';
-    SC.choiceB = '选项B';
-    SC.choiceC = '选项C';
-    SC.choiceD = '选项D';
+    SC.question = '';
+    SC.choiceA = '';
+    SC.choiceB = '';
+    SC.choiceC = '';
+    SC.choiceD = '';
     SC.right_choice = 'A';
     this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice.push(SC);
     localStorage.setItem('lesson', JSON.stringify(this.lesson));
@@ -40,7 +40,8 @@ export class HomeworkdesigmComponent implements OnInit {
     if (i > 0) {
       SC = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i - 1];
       // tslint:disable-next-line:max-line-length
-      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i - 1] = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i];
+      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i - 1] =
+        this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i];
       this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i] = SC;
       localStorage.setItem('lesson', JSON.stringify(this.lesson));
     }
@@ -50,7 +51,8 @@ export class HomeworkdesigmComponent implements OnInit {
     if (i < this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice.length - 1) {
       SC = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i + 1];
       // tslint:disable-next-line:max-line-length
-      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i + 1] = this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i];
+      this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i + 1] =
+        this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i];
       this.lesson.chapters[this.ChaIndex].section[this.SecIndex].singleChoice[i] = SC;
       localStorage.setItem('lesson', JSON.stringify(this.lesson));
     }

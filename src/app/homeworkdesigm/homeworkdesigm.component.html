@@ -8,22 +8,22 @@
     <mat-form-field  mat-line class="half-fill">
         <span (click)="makeRight('A',i)">选项A:</span>
         <mat-icon *ngIf="singleChoice.right_choice === 'A'">check_circle</mat-icon>
-        <input matInput placeholder="选项描述" [(ngModel)]="singleChoice.choiceA" class="choice" (blur)="tmepSave()">
+        <input matInput [(ngModel)]="singleChoice.choiceA" class="choice" (blur)="tmepSave()">
     </mat-form-field>
     <mat-form-field class="half-fill" mat-line>
       <span (click)="makeRight('B',i)">选项B:</span>
       <mat-icon *ngIf="singleChoice.right_choice === 'B'">check_circle</mat-icon>
-      <input matInput placeholder="选项描述" [(ngModel)]="singleChoice.choiceB" class="choice" (blur)="tmepSave()">
+      <input matInput [(ngModel)]="singleChoice.choiceB" class="choice" (blur)="tmepSave()">
     </mat-form-field>
     <mat-form-field class="half-fill" mat-line>
       <span (click)="makeRight('C',i)">选项C:</span>
       <mat-icon *ngIf="singleChoice.right_choice === 'C'">check_circle</mat-icon>
-      <input matInput placeholder="选项描述" [(ngModel)]="singleChoice.choiceC" class="choice" (blur)="tmepSave()">
+      <input matInput [(ngModel)]="singleChoice.choiceC" class="choice" (blur)="tmepSave()">
     </mat-form-field>
     <mat-form-field class="half-fill" mat-line>
       <span class="right" (click)="makeRight('D',i)">选项D:</span>
       <mat-icon *ngIf="singleChoice.right_choice === 'D'">check_circle</mat-icon>
-      <input matInput placeholder="选项描述" [(ngModel)]="singleChoice.choiceD" class="choice" (blur)="tmepSave()">
+      <input matInput  [(ngModel)]="singleChoice.choiceD" class="choice" (blur)="tmepSave()">
     </mat-form-field>
     <br>
     <mat-icon class="lefticon" (click)="upSC(i)">arrow_upward</mat-icon>

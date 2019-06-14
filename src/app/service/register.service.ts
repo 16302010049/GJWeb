@@ -16,10 +16,10 @@ export class RegisterService {
   }
 
   postUser(userp) {
-    this.http.post('http://localhost:8080/teacher/register', userp).subscribe();
+    this.http.post('http://52.91.208.255:8080/teacher/register', userp).subscribe();
   }
 
   checkName(name: string): any {
-    return this.http.get('http://localhost:8080/teacher/checkName?name=' + name);
+    return this.http.get('http://52.91.208.255:8080/teacher/checkName?name=' + name);
   }
 }

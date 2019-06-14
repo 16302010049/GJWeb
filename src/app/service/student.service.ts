@@ -17,15 +17,11 @@ export class StudentService {
   }
 
   getStudnetList(lessson_id: number): any {
-    return this.http.get('http://localhost:8080/teacher/studentList?course_id=' + lessson_id);
-  }
-
-  getStudentInfo(student_id: number): any {
-    return this.http.get('http://localhost:5300/student/' + student_id);
+    return this.http.get('http://52.91.208.255:8080/teacher/studentList?course_id=' + lessson_id);
   }
 
   getAnswerRecord(obj): any {
-    return this.http.post('http://localhost:8080/teacher/answerRecord', obj, httpOptions);
+    return this.http.post('http://52.91.208.255:8080/teacher/answerRecord', obj, httpOptions);
   }
 
 }
